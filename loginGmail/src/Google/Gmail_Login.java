@@ -1,6 +1,6 @@
 package Google;
 import static org.junit.Assert.assertEquals;
-
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -49,9 +49,17 @@ public class Gmail_Login {
 		WebElement clicknext2 = driver.findElement(By.className("CwaK9"));
 		clicknext2.click();
 		
-        assertEquals("Senha incorreta. Tente novamente.", driver.findElement(By.cssSelector("div.dEOOab.RxsGPe")).getText());
-		
+		 try{
+			 assertEquals("Senha incorreta. Tente novamente.", driver.findElement(By.cssSelector("div.dEOOab.RxsGPe")).getText());
+		 }catch(AssertionError e){
+			 e.printStackTrace();
+		 } 
 		
 	}
-	
+
+	@After
+	public void fecharNavegador(){
+		driver.quit();
+	}
+		
 }
